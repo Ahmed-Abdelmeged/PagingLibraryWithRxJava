@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.adapter;
+package com.ahmedabdelmeged.pagingwithrxjava.java.adapter;
 
 import android.arch.paging.PagedListAdapter;
 import android.support.annotation.NonNull;
@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.ahmedabdelmeged.pagingwithrxjava.R;
-import com.ahmedabdelmeged.pagingwithrxjava.data.NetworkState;
-import com.ahmedabdelmeged.pagingwithrxjava.model.User;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.NetworkState;
+import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;
 
 import java.util.Objects;
 

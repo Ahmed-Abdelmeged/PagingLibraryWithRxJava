@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.ui;
+package com.ahmedabdelmeged.pagingwithrxjava.java.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ahmedabdelmeged.pagingwithrxjava.R;
-import com.ahmedabdelmeged.pagingwithrxjava.adapter.RetryCallback;
-import com.ahmedabdelmeged.pagingwithrxjava.adapter.UserAdapter;
-import com.ahmedabdelmeged.pagingwithrxjava.data.NetworkState;
-import com.ahmedabdelmeged.pagingwithrxjava.data.Status;
+import com.ahmedabdelmeged.pagingwithrxjava.java.adapter.RetryCallback;
+import com.ahmedabdelmeged.pagingwithrxjava.java.adapter.UserAdapter;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.NetworkState;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.Status;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

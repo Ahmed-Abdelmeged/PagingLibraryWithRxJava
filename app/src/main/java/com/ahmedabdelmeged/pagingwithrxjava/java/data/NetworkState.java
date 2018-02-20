@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.data;
+package com.ahmedabdelmeged.pagingwithrxjava.java.data;
 
 /**
  * Created by Ahmed Abd-Elmeged on 2/13/2018.

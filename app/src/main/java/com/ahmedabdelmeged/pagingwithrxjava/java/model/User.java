@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.model;
+package com.ahmedabdelmeged.pagingwithrxjava.java.model;
 
 import com.google.gson.annotations.SerializedName;
 

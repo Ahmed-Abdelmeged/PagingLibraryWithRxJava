@@ -1,6 +1,6 @@
-package com.ahmedabdelmeged.pagingwithrxjava.api;
+package com.ahmedabdelmeged.pagingwithrxjava.java.api;
 
-import com.ahmedabdelmeged.pagingwithrxjava.model.User;
+import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;
 
 import java.util.List;
 
@@ -19,21 +19,20 @@ public interface GithubService {
     /**
      * Get github users
      *
-     * @param userId   the id of the user to get the more users after it
+     * @param userId  the id of the user to get the more users after it
      * @param perPage number of users ber page
      * @return list of github users
      */
     @GET("/users")
     Single<List<User>> getUsers(@Query("since") long userId, @Query("per_page") int perPage);
 
-
-     static GithubService getService(){
-         Retrofit retrofit = new Retrofit.Builder()
-                 .baseUrl("https://api.github.com/")
-                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                 .addConverterFactory(GsonConverterFactory.create())
-                 .build();
-         return retrofit.create(GithubService.class);
-     }
+    static GithubService getService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(GithubService.class);
+    }
 
 }

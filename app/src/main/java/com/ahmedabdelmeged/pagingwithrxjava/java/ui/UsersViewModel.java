@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.ui;
+package com.ahmedabdelmeged.pagingwithrxjava.java.ui;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
@@ -6,10 +6,10 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
-import com.ahmedabdelmeged.pagingwithrxjava.data.datasource.UsersDataSource;
-import com.ahmedabdelmeged.pagingwithrxjava.data.datasource.UsersDataSourceFactory;
-import com.ahmedabdelmeged.pagingwithrxjava.model.User;
-import com.ahmedabdelmeged.pagingwithrxjava.data.NetworkState;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.datasource.UsersDataSource;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.datasource.UsersDataSourceFactory;
+import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.NetworkState;
 
 import io.reactivex.disposables.CompositeDisposable;
 

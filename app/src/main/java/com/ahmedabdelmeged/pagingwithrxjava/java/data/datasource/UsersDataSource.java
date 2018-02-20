@@ -1,12 +1,12 @@
-package com.ahmedabdelmeged.pagingwithrxjava.data.datasource;
+package com.ahmedabdelmeged.pagingwithrxjava.java.data.datasource;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.ItemKeyedDataSource;
 import android.support.annotation.NonNull;
 
-import com.ahmedabdelmeged.pagingwithrxjava.api.GithubService;
-import com.ahmedabdelmeged.pagingwithrxjava.model.User;
-import com.ahmedabdelmeged.pagingwithrxjava.data.NetworkState;
+import com.ahmedabdelmeged.pagingwithrxjava.java.api.GithubService;
+import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.NetworkState;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

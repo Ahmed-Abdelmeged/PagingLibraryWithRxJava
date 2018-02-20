@@ -1,4 +1,4 @@
-package com.ahmedabdelmeged.pagingwithrxjava.adapter;
+package com.ahmedabdelmeged.pagingwithrxjava.java.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ahmedabdelmeged.pagingwithrxjava.R;
-import com.ahmedabdelmeged.pagingwithrxjava.data.NetworkState;
-import com.ahmedabdelmeged.pagingwithrxjava.data.Status;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.NetworkState;
+import com.ahmedabdelmeged.pagingwithrxjava.java.data.Status;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
