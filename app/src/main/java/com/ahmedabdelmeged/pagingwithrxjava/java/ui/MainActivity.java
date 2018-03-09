@@ -23,10 +23,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements RetryCallback {
 
-    private UsersViewModel usersViewModel;
-
-    private UserAdapter userAdapter;
-
     @BindView(R.id.usersSwipeRefreshLayout)
     SwipeRefreshLayout usersSwipeRefreshLayout;
 
@@ -41,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements RetryCallback {
 
     @BindView(R.id.loadingProgressBar)
     ProgressBar loadingProgressBar;
+
+    private UsersViewModel usersViewModel;
+
+    private UserAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements RetryCallback {
         userAdapter = new UserAdapter(this);
         usersRecyclerView.setLayoutManager(linearLayoutManager);
         usersRecyclerView.setAdapter(userAdapter);
-        usersViewModel.userList.observe(this, userAdapter::setList);
+        usersViewModel.userList.observe(this, userAdapter::submitList);
         usersViewModel.getNetworkState().observe(this, userAdapter::setNetworkState);
     }
 
@@ -67,15 +67,17 @@ public class MainActivity extends AppCompatActivity implements RetryCallback {
      */
     private void initSwipeToRefresh() {
         usersViewModel.getRefreshState().observe(this, networkState -> {
-            if (userAdapter.getCurrentList() != null) {
-                if (userAdapter.getCurrentList().size() > 0) {
-                    usersSwipeRefreshLayout.setRefreshing(
-                            networkState.getStatus() == NetworkState.LOADING.getStatus());
+            if (networkState != null) {
+                if (userAdapter.getCurrentList() != null) {
+                    if (userAdapter.getCurrentList().size() > 0) {
+                        usersSwipeRefreshLayout.setRefreshing(
+                                networkState.getStatus() == NetworkState.LOADING.getStatus());
+                    } else {
+                        setInitialLoadingState(networkState);
+                    }
                 } else {
                     setInitialLoadingState(networkState);
                 }
-            } else {
-                setInitialLoadingState(networkState);
             }
         });
         usersSwipeRefreshLayout.setOnRefreshListener(() -> usersViewModel.refresh());

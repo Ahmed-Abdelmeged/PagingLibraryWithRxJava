@@ -8,9 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by Ahmed Abd-Elmeged on 2/20/2018.
- */
-
-/**
+ *
  * A simple data source factory which also provides a way to observe the last created data source.
  * This allows us to channel its network request status etc back to the UI. See the Listing creation
  * in the Repository class.

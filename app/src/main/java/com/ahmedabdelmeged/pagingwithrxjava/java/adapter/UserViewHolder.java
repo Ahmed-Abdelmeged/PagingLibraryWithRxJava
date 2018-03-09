@@ -14,7 +14,6 @@ import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 /**
  * Created by Ahmed Abd-Elmeged on 2/20/2018.
  */

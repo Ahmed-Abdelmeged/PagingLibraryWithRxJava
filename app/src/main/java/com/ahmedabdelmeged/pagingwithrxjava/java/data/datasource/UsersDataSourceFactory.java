@@ -1,6 +1,5 @@
 package com.ahmedabdelmeged.pagingwithrxjava.java.data.datasource;
 
-
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.DataSource;
 import android.support.annotation.NonNull;
@@ -11,9 +10,7 @@ import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by Ahmed Abd-Elmeged on 2/13/2018.
- */
-
-/**
+ * <p>
  * A simple data source factory which also provides a way to observe the last created data source.
  * This allows us to channel its network request status etc back to the UI. See the Listing creation
  * in the Repository class.

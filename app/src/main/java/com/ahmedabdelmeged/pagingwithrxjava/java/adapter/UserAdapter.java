@@ -2,7 +2,7 @@ package com.ahmedabdelmeged.pagingwithrxjava.java.adapter;
 
 import android.arch.paging.PagedListAdapter;
 import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.DiffCallback;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -26,8 +26,9 @@ public class UserAdapter extends PagedListAdapter<User, RecyclerView.ViewHolder>
         this.retryCallback = retryCallback;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case R.layout.item_user:
                 return UserViewHolder.create(parent);
@@ -39,7 +40,7 @@ public class UserAdapter extends PagedListAdapter<User, RecyclerView.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case R.layout.item_user:
                 ((UserViewHolder) holder).bindTo(getItem(position));
@@ -96,7 +97,7 @@ public class UserAdapter extends PagedListAdapter<User, RecyclerView.ViewHolder>
         }
     }
 
-    private static DiffCallback<User> UserDiffCallback = new DiffCallback<User>() {
+    private static DiffUtil.ItemCallback<User> UserDiffCallback = new DiffUtil.ItemCallback<User>() {
         @Override
         public boolean areItemsTheSame(@NonNull User oldItem, @NonNull User newItem) {
             return oldItem.getId() == newItem.getId();

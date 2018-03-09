@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
         usersRecyclerView.layoutManager = linearLayoutManager
         usersRecyclerView.adapter = userAdapter
-        usersViewModel.userList.observe(this, Observer<PagedList<User>> { userAdapter.setList(it) })
+        usersViewModel.userList.observe(this, Observer<PagedList<User>> { userAdapter.submitList(it) })
         usersViewModel.getNetworkState().observe(this, Observer<NetworkState> { userAdapter.setNetworkState(it) })
     }
 

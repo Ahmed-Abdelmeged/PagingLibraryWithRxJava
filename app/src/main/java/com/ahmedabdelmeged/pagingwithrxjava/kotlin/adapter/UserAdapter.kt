@@ -1,7 +1,7 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.adapter
 
 import android.arch.paging.PagedListAdapter
-import android.support.v7.recyclerview.extensions.DiffCallback
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.ahmedabdelmeged.pagingwithrxjava.R
@@ -23,7 +23,7 @@ class UserAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<User
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             R.layout.item_user -> (holder as UserViewHolder).bindTo(getItem(position))
             R.layout.item_network_state -> (holder as NetworkStateViewHolder).bindTo(networkState)
@@ -75,7 +75,7 @@ class UserAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<User
     }
 
     companion object {
-        val UserDiffCallback = object : DiffCallback<User>() {
+        val UserDiffCallback = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem.id == newItem.id
             }

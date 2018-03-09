@@ -1,6 +1,5 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.data
 
-
 /**
  * Created by Ahmed Abd-Elmeged on 2/20/2018.
  */

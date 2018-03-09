@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Ahmed Abd-Elmeged on 2/13/2018.
- */
-
-/**
+ * <p>
  * Boring class use kotlin data class better :D
  */
 public class User {
