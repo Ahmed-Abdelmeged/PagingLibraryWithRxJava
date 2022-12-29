@@ -1,8 +1,8 @@
 package com.ahmedabdelmeged.pagingwithrxjava.java.data.datasource;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.paging.ItemKeyedDataSource;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.paging.ItemKeyedDataSource;
 
 import com.ahmedabdelmeged.pagingwithrxjava.java.api.GithubService;
 import com.ahmedabdelmeged.pagingwithrxjava.java.model.User;

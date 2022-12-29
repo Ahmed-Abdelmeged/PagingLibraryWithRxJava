@@ -1,30 +1,29 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.ui
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.arch.paging.PagedList
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.ahmedabdelmeged.pagingwithrxjava.R
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ahmedabdelmeged.pagingwithrxjava.core.BaseActivity
+import com.ahmedabdelmeged.pagingwithrxjava.databinding.ActivityMainBinding
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.adapter.UserAdapter
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.NetworkState
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.Status
-import com.ahmedabdelmeged.pagingwithrxjava.kotlin.model.User
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_network_state.*
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var usersViewModel: UsersViewModel
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private lateinit var userAdapter: UserAdapter
 
+    private val usersViewModel: UsersViewModel by lazy {
+        ViewModelProviders.of(this)[UsersViewModel::class.java]
+    }
+
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        usersViewModel = ViewModelProviders.of(this).get(UsersViewModel::class.java)
         initAdapter()
         initSwipeToRefresh()
     }
@@ -34,28 +33,29 @@ class MainActivity : AppCompatActivity() {
         userAdapter = UserAdapter {
             usersViewModel.retry()
         }
-        usersRecyclerView.layoutManager = linearLayoutManager
-        usersRecyclerView.adapter = userAdapter
-        usersViewModel.userList.observe(this, Observer<PagedList<User>> { userAdapter.submitList(it) })
-        usersViewModel.getNetworkState().observe(this, Observer<NetworkState> { userAdapter.setNetworkState(it) })
+        binding.usersRecyclerView.layoutManager = linearLayoutManager
+        binding.usersRecyclerView.adapter = userAdapter
+        usersViewModel.userList.observe(this) { userAdapter.submitList(it) }
+        usersViewModel.getNetworkState().observe(this) { userAdapter.setNetworkState(it) }
     }
 
     /**
      * Init swipe to refresh and enable pull to refresh only when there are items in the adapter
      */
     private fun initSwipeToRefresh() {
-        usersViewModel.getRefreshState().observe(this, Observer { networkState ->
+        usersViewModel.getRefreshState().observe(this) { networkState ->
             if (userAdapter.currentList != null) {
                 if (userAdapter.currentList!!.size > 0) {
-                    usersSwipeRefreshLayout.isRefreshing = networkState?.status == NetworkState.LOADING.status
+                    binding.usersSwipeRefreshLayout.isRefreshing =
+                        networkState?.status == NetworkState.LOADING.status
                 } else {
                     setInitialLoadingState(networkState)
                 }
             } else {
                 setInitialLoadingState(networkState)
             }
-        })
-        usersSwipeRefreshLayout.setOnRefreshListener({ usersViewModel.refresh() })
+        }
+        binding.usersSwipeRefreshLayout.setOnRefreshListener { usersViewModel.refresh() }
     }
 
     /**
@@ -66,17 +66,17 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setInitialLoadingState(networkState: NetworkState?) {
         //error message
-        errorMessageTextView.visibility = if (networkState?.message != null) View.VISIBLE else View.GONE
+        binding.containerLoading.errorMessageTextView.visibility = if (networkState?.message != null) View.VISIBLE else View.GONE
         if (networkState?.message != null) {
-            errorMessageTextView.text = networkState.message
+            binding.containerLoading.errorMessageTextView.text = networkState.message
         }
 
         //loading and retry
-        retryLoadingButton.visibility = if (networkState?.status == Status.FAILED) View.VISIBLE else View.GONE
-        loadingProgressBar.visibility = if (networkState?.status == Status.RUNNING) View.VISIBLE else View.GONE
+        binding.containerLoading.retryLoadingButton.visibility = if (networkState?.status == Status.FAILED) View.VISIBLE else View.GONE
+        binding.containerLoading.loadingProgressBar.visibility = if (networkState?.status == Status.RUNNING) View.VISIBLE else View.GONE
 
-        usersSwipeRefreshLayout.isEnabled = networkState?.status == Status.SUCCESS
-        retryLoadingButton.setOnClickListener { usersViewModel.retry() }
+        binding.usersSwipeRefreshLayout.isEnabled = networkState?.status == Status.SUCCESS
+        binding.containerLoading.retryLoadingButton.setOnClickListener { usersViewModel.retry() }
     }
 
 }

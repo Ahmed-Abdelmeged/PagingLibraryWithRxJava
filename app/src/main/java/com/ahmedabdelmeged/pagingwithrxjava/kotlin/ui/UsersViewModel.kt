@@ -1,13 +1,12 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.ui
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.api.GithubService
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.NetworkState
-import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.datasource.UsersDataSource
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.datasource.UsersDataSourceFactory
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.model.User
 import io.reactivex.disposables.CompositeDisposable
@@ -23,16 +22,16 @@ class UsersViewModel : ViewModel() {
 
     private val pageSize = 15
 
-    private val sourceFactory: UsersDataSourceFactory
+    private val sourceFactory: UsersDataSourceFactory =
+        UsersDataSourceFactory(compositeDisposable, GithubService.getService())
 
     init {
-        sourceFactory = UsersDataSourceFactory(compositeDisposable, GithubService.getService())
         val config = PagedList.Config.Builder()
-                .setPageSize(pageSize)
-                .setInitialLoadSizeHint(pageSize * 2)
-                .setEnablePlaceholders(false)
-                .build()
-        userList = LivePagedListBuilder<Long, User>(sourceFactory, config).build()
+            .setPageSize(pageSize)
+            .setInitialLoadSizeHint(pageSize * 2)
+            .setEnablePlaceholders(false)
+            .build()
+        userList = LivePagedListBuilder(sourceFactory, config).build()
 
     }
 
@@ -44,11 +43,11 @@ class UsersViewModel : ViewModel() {
         sourceFactory.usersDataSourceLiveData.value!!.invalidate()
     }
 
-    fun getNetworkState(): LiveData<NetworkState> = Transformations.switchMap<UsersDataSource, NetworkState>(
-            sourceFactory.usersDataSourceLiveData, { it.networkState })
+    fun getNetworkState(): LiveData<NetworkState> = Transformations.switchMap(
+        sourceFactory.usersDataSourceLiveData) { it.networkState }
 
-    fun getRefreshState(): LiveData<NetworkState> = Transformations.switchMap<UsersDataSource, NetworkState>(
-            sourceFactory.usersDataSourceLiveData, { it.initialLoad })
+    fun getRefreshState(): LiveData<NetworkState> = Transformations.switchMap(
+        sourceFactory.usersDataSourceLiveData) { it.initialLoad }
 
     override fun onCleared() {
         super.onCleared()

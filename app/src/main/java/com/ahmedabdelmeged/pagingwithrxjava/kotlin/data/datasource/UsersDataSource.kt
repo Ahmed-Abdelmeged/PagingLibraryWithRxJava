@@ -1,7 +1,7 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.datasource
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.ItemKeyedDataSource
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.ItemKeyedDataSource
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.api.GithubService
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.NetworkState
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.model.User

@@ -1,7 +1,7 @@
 package com.ahmedabdelmeged.pagingwithrxjava.kotlin.data.datasource
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.DataSource
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.api.GithubService
 import com.ahmedabdelmeged.pagingwithrxjava.kotlin.model.User
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
  */
 class UsersDataSourceFactory(private val compositeDisposable: CompositeDisposable,
                              private val githubService: GithubService)
-    : DataSource.Factory<Long, User> {
+    : DataSource.Factory<Long, User>() {
 
     val usersDataSourceLiveData = MutableLiveData<UsersDataSource>()
 
