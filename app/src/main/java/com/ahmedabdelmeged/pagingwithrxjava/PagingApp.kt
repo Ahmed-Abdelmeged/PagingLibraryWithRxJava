@@ -1,6 +1,7 @@
 package com.ahmedabdelmeged.pagingwithrxjava
 
 import android.app.Application
+import android.content.Context
 
 import timber.log.Timber
 
@@ -9,8 +10,18 @@ import timber.log.Timber
  */
 class PagingApp : Application() {
 
+    companion object {
+
+        lateinit var context: PagingApp
+
+        @JvmStatic
+        fun getContextExt(): Context = context.applicationContext
+
+    }
+
     override fun onCreate() {
         super.onCreate()
+        context = this
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

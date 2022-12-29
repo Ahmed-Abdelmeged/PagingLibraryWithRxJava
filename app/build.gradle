@@ -65,6 +65,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common:2.5.1"
     kapt "androidx.lifecycle:lifecycle-compiler:2.5.1"
 
+    // Interceptor
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7"
+
     // Paging
     implementation "androidx.paging:paging-common-ktx:3.1.1"
     implementation "androidx.paging:paging-rxjava2-ktx:3.1.1"
@@ -72,6 +76,10 @@ dependencies {
 
     // Timber for logging
     implementation "com.jakewharton.timber:timber:4.6.1"
+
+    // Chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
